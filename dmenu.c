@@ -589,7 +589,7 @@ setup(void)
 					break;
 
 		x = info[i].x_org;
-		y = info[i].y_org + (topbar ? 0 : info[i].height - mh);
+		y = info[i].y_org + (centerbar ? (info[i].height - mh) /2 : (topbar ? 0 : info[i].height - mh));
 		mw = info[i].width;
 		XFree(info);
 	} else
@@ -654,6 +654,8 @@ main(int argc, char *argv[])
 			exit(0);
 		} else if (!strcmp(argv[i], "-b")) /* appears at the bottom of the screen */
 			topbar = 0;
+    else if (!strcmp(argv[i], "-c")) /* appears at the center of the screen */
+      centerbar = 1;
 		else if (!strcmp(argv[i], "-f"))   /* grabs keyboard before reading stdin */
 			fast = 1;
 		else if (!strcmp(argv[i], "-i")) { /* case-insensitive item matching */
